@@ -46,7 +46,6 @@ function SkyBackground({
     c.width = c.height = size;
     const ctx = c.getContext('2d')!;
     const [cx, cy] = center;
-    // Small inner circle -> larger outer circle for a smooth vignette
     const g = ctx.createRadialGradient(
       size * cx,
       size * cy,
@@ -183,11 +182,9 @@ function Starfield({
   );
 }
 
-// ===== Demo with gradient background + aurora overlay
 export default function StarfieldHeroGradient() {
   return (
-    <section className="relative w-full  text-white">
-      {/* Aurora-ish overlay ABOVE the canvas/background (semi-transparent) */}
+    <section className="w-full text-white">
       <div
         className="pointer-events-none fixed inset-0 -z-9"
         style={{
@@ -196,11 +193,8 @@ export default function StarfieldHeroGradient() {
             'radial-gradient(130% 80% at 50% 130%, rgba(171, 7, 7, 0.4) 0%, rgba(0,0,0,0) 100%)',
         }}
       />
-
-      {/* Stars + gradient background in the same Canvas */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <Canvas camera={{ position: [0, 0, 90], fov: 60 }}>
-          {/* Replace <color .../> with a radial gradient texture */}
           <SkyBackground
             colors={['#000000', '#000000', '#000000']}
             stops={[0, 0.6, 1]}

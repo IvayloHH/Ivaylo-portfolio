@@ -1,3 +1,4 @@
+'use client';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -36,12 +37,11 @@ const HorizontalCards = () => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ['60%', '-100%']);
   return (
-    <section ref={targetRef} className="relative h-[700vh] bg-transparent">
+    <section ref={targetRef} className="h-[700vh] bg-transparent">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-4">
           {cards.map((card) => {

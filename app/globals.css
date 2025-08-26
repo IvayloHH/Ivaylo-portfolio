@@ -122,3 +122,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border: 1px solid green;
+  background-color: green;
+  border-radius: 100%;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0.6;
+  }
+}

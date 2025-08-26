@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import '../globals.css';
 import Footer from '@/components/Footer';
-import AnimatedNavbarResponsive from '@/components/header/Navbar';
+import SmoothScroll from '@/components/SmoothScroll';
+// import AnimatedNavbarResponsive from '@/components/header/Navbar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,15 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className='relative'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
-        <>
-          <AnimatedNavbarResponsive />
+        <SmoothScroll>
           <main>{children}</main>
           <Footer />
-        </>
+        </SmoothScroll>
       </body>
     </html>
   );
