@@ -41,7 +41,7 @@ const OverlaySection = () => {
         </div>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="text-2xl md:text-4xl tracking-wider p-4 text-gray-100/70 w-[85vw] text-center">
+          <div className="text-2xl md:text-4xl tracking-wider p-4 text-gray-100/70 w-[85vw] text-center md:text-start">
             BETWEEN STARS AND CODE:
           </div>
           <motion.p
