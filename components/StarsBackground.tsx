@@ -189,7 +189,6 @@ export default function StarfieldHeroGradient() {
         className="pointer-events-none fixed inset-0 -z-9"
         style={{
           background:
-            // 'radial-gradient(130% 80% at 50% 100%, rgba(56,189,248,0.25) 0%, rgba(147,51,234,0.18) 35%, rgba(0,0,0,0) 70%)',
             'radial-gradient(130% 80% at 50% 130%, rgba(171, 7, 7, 0.4) 0%, rgba(0,0,0,0) 100%)',
         }}
       />

@@ -49,7 +49,8 @@ const HorizontalCards = () => {
               <div
                 key={card.id}
                 // h-[650px] w-[550px]
-                className="group relative h-[65vh] w-[35vw] rounded-lg overflow-hidden border mx-40 bg-rose-950"
+                // h-[65vh] w-[35vw]
+                className="group relative h-[35vh] w-[65vw] md:h-[65vh] md:w-[35vw] rounded-lg overflow-hidden border mx-40 bg-rose-950"
               >
                 <div
                   style={{
