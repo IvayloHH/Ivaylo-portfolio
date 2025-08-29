@@ -56,16 +56,16 @@ const OverlaySection = () => {
     <motion.section
       style={{ opacity: bgOpacity }}
       ref={containerRef}
-      className="h-[240vh] bg-zinc-900 text-white w-full fixed top-0 z-10"
+      className="h-[240vh] text-white w-full fixed top-0 z-10 bg-gradient-to-b from-white via-18%  via-zinc-900 to-50% to-white "
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <video
+        {/* <video
           src="/abstract.mp4"
           autoPlay
           muted
           loop
           className="absolute w-full h-screen -z-10 object-cover"
-        />
+        /> */}
         <div className="flex justify-around flex-col pt-30">
           <MotionDiv
             innerOp={bgOpacityInner}
