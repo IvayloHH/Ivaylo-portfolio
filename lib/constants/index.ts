@@ -33,3 +33,46 @@ export const services = [
     },
   },
 ];
+
+export const containerVariants = {
+  hidden: { opacity: 1 }, // keep opacity to avoid flicker, children handle entrance
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.08,
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+export const itemVariants = {
+  hidden: { opacity: 0, y: 12 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.38, ease: [0.01, 1, 0.3, 1] as const },
+  },
+};
+
+export const LINKS = [
+  {
+    label: 'Home',
+    href: '/',
+  },
+  {
+    label: 'Services',
+    href: '/services',
+  },
+  {
+    label: 'Work',
+    href: '/projects',
+  },
+  {
+    label: 'About',
+    href: '/about',
+  },
+  {
+    label: 'Contact',
+    href: '/contact',
+  },
+];

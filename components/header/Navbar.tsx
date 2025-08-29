@@ -1,141 +1,151 @@
 'use client';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Menu } from 'lucide-react';
-
-import { Button } from '@/components/ui/button';
 import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetClose,
-} from '@/components/ui/sheet';
+  AnimatePresence,
+  motion,
+  useScroll,
+  useMotionValueEvent,
+} from 'framer-motion';
+import Link from 'next/link';
+import { containerVariants, itemVariants, LINKS } from '@/lib/constants';
+import BurgerMenu from './BurgerMenu';
 
-const NAV_ITEMS = [
-  { id: 'home', label: 'home' },
-  { id: 'about', label: 'about' },
-  { id: 'projects', label: 'projects' },
-  { id: 'contact', label: 'contact' },
-] as const;
+export default function TopSheetNav() {
+  const { scrollY } = useScroll();
+  const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [customColor, setCustomColor] = useState('');
 
-type NavId = (typeof NAV_ITEMS)[number]['id'];
-
-export default function AnimatedNavbarResponsive() {
-  const [active, setActive] = useState<NavId>('home');
-
-  const handleSelect = (id: NavId) => {
-    setActive(id);
-  };
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > (previous || 0) || latest == 0) {
+      setCustomColor('bg-zinc-900');
+      if (latest > 150) {
+        setHidden(true);
+      }
+    } else {
+      setHidden(false);
+      setCustomColor('bg-zinc-900');
+    }
+  });
 
   return (
-    <header className="w-full text-white flex items-start justify-center p-8">
-      <div className="w-full max-w-5xl rounded-2xl border border-white/10 bg-neutral-900/60 backdrop-blur p-3 shadow-xl flex items-center justify-between">
-        <div className="flex items-center gap-2 px-1">
-          <span className="inline-block h-3 w-3 rounded-full bg-emerald-400" />
-          <span className="text-sm font-semibold tracking-wide text-neutral-200">
-            brand
-          </span>
-        </div>
-
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex gap-2">
-            {NAV_ITEMS.map((item) => {
-              const isActive = active === item.id;
-              return (
-                <li key={item.id} className="relative">
-                  <Button
-                    variant="ghost"
-                    onClick={() => handleSelect(item.id)}
-                    className={[
-                      'relative z-10 rounded-xl font-medium capitalize bg-transparent',
-                      'px-4 py-2 outline-none transition-colors hover:bg-transparent hover:text-white cursor-pointer',
-                      isActive ? 'text-white' : 'text-neutral-300',
-                    ].join(' ')}
-                    aria-current={isActive ? 'page' : undefined}
-                  >
-                    {item.label}
-                  </Button>
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-pill-desktop"
-                      className="absolute inset-0 rounded-xl bg-white/10 ring-1 ring-white/15"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 500,
-                        damping: 40,
-                        mass: 1,
-                      }}
-                    />
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
-        <div className="md:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-neutral-200 bg-transparent"
+    <>
+      <motion.header
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: '-150%' },
+        }}
+        animate={hidden ? 'hidden' : 'visible'}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+        className="sticky inset-x-0 top-0 bg-zinc-900 z-50"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <nav
+            className={`flex md:h-20 items-center justify-between text-white/90  rounded-xl p-6 ${customColor} transition-colors duration-1000 ease-in-out`}
+          >
+            <div className="min-w-0 flex justify-between items-center w-full md:w-1/3">
+              <Link
+                href="/"
+                className="font-semibold tracking-tight text-lg sm:text-xl md:text-2xl select-none"
               >
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="bg-neutral-900 border-white/10 text-neutral-100"
-            >
-              <SheetHeader className="mb-4">
-                <SheetTitle className="text-neutral-200">Navigation</SheetTitle>
-              </SheetHeader>
-
-              <nav aria-label="Mobile" className="w-full">
-                <ul className="flex flex-col gap-2">
-                  {NAV_ITEMS.map((item) => {
-                    const isActive = active === item.id;
-                    return (
-                      <li key={item.id} className="relative">
-                        <SheetClose asChild>
-                          <Button
-                            variant="ghost"
-                            onClick={() => handleSelect(item.id)}
-                            className={[
-                              'relative z-10 w-full rounded-xl font-medium capitalize text-left bg-transparent',
-                              'px-4 py-3 outline-none transition-colors',
-                              isActive ? 'text-white' : 'text-neutral-300',
-                            ].join(' ')}
-                            aria-current={isActive ? 'page' : undefined}
-                          >
-                            {item.label}
-                          </Button>
-                        </SheetClose>
-                        {isActive && (
-                          <motion.div
-                            layoutId="active-pill-mobile"
-                            className="absolute inset-0 rounded-xl bg-white/10 ring-1 ring-white/15"
-                            transition={{
-                              type: 'spring',
-                              stiffness: 500,
-                              damping: 40,
-                              mass: 1,
-                            }}
-                          />
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-            </SheetContent>
-          </Sheet>
+                Ivaylo
+              </Link>
+              <BurgerMenu open={open} setOpen={setOpen} />
+            </div>
+            <div className="hidden md:flex min-w-0 flex-1 justify-end">
+              <motion.p
+                variants={itemVariants}
+                transition={{
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 30,
+                }}
+                role="none"
+                className="text-white/45 "
+              >
+                <Link href="/project-info" className="fillColorProject">
+                  <span className="text-2xl">Start a Project</span>
+                </Link>
+              </motion.p>
+            </div>
+          </nav>
         </div>
-      </div>
-    </header>
+      </motion.header>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.aside key="sheet" className="fixed inset-0 z-20">
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              exit={{ scaleY: 0 }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-x-0 origin-top overflow-hidden bg-zinc-900 max-sm:h-screen"
+            >
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="h-screen md:h-fit flex flex-col-reverse md:flex-row justify-between mx-auto max-w-7xl px-6 md:px-8 pt-24 md:pt-28 pb-20"
+              >
+                <div className="flex flex-col justify-end md:items-center text-white/45 text-lg gap-2">
+                  <p className="hover:text-red-800 cursor-pointer">Facebook</p>
+                  <p className="hover:text-red-800 cursor-pointer">Instagram</p>
+                  <p className="hover:text-red-800 cursor-pointer">LinkedIn</p>
+                </div>
+                <motion.ul
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="show"
+                  role="menu"
+                  aria-label="Expanded navigation"
+                  className="grid md:w-3/4 md:grid gap-4 md:gap-8 group text-white md:text-white/45 pt-15"
+                >
+                  {LINKS.map(
+                    ({ label, href }: { label: string; href: string }) => (
+                      <motion.li
+                        key={label}
+                        variants={itemVariants}
+                        whileHover={{ x: 15 }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 100,
+                          damping: 30,
+                        }}
+                        role="none"
+                        className="w-full md:w-fit"
+                      >
+                        <Link
+                          href={href}
+                          role="menuitem"
+                          className="fillColor"
+                          onClick={() => setOpen((v) => !v)}
+                        >
+                          <span className="text-4xl md:text-6xl tracking-wider font-extrabold md:font-semibold lg:text-7xl">
+                            {label}
+                          </span>
+                        </Link>
+                      </motion.li>
+                    )
+                  )}
+                </motion.ul>
+                <div className="fixed bottom-80 -right-20 rotate-90 flex md:hidden">
+                  <Link
+                    href="/project-info"
+                    className="fillCover text-xl text-white/20"
+                  >
+                    <p className="text-5xl font-roboto tracking-tighter font-semibold">
+                      Start a Project
+                    </p>
+                  </Link>
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

@@ -14,7 +14,7 @@ const MotionCard = ({
 }) => {
   return (
     // cardcontainer
-    <div className=" h-[calc(100vh-500px)] flex justify-center items-center sticky top-0">
+    <div className="h-[calc(100vh-500px)] flex justify-center items-center sticky top-0">
       {/* //card */}
       <div
         className={cn(
