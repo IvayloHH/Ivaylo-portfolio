@@ -28,6 +28,11 @@ const OverlaySection = () => {
     [1, 1, 0, -1]
   );
   const bgOpacityInner = useTransform(scrollYProgress, [0, 0.1, 1], [1, 0, -1]);
+  const bgOpacityVideo = useTransform(
+    scrollYProgress,
+    [0, 0.1, 1],
+    [0.8, 0.1, -1]
+  );
 
   const MotionDiv = ({
     children,
@@ -76,17 +81,18 @@ const OverlaySection = () => {
     <motion.section
       style={{ opacity: bgOpacity }}
       ref={containerRef}
-      className="h-[240vh] text-white w-full fixed top-0 z-10 bg-gradient-to-b from-white via-18%  via-zinc-900 to-50% to-white "
+      className="h-[240vh] text-white w-full fixed top-0 z-10"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <video
+        <motion.video
+          style={{ opacity: bgOpacityVideo }}
           ref={videoRef}
           src="/I_logo.mp4"
           autoPlay
           muted
           loop
           playsInline
-          className="absolute w-full h-screen -z-10 object-cover"
+          className="absolute w-full h-screen -z-10 object-cover opacity-30"
         />
         <div className="flex justify-around flex-col md:pt-30 h-screen pb-5">
           <MotionDiv
