@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-zinc-900`}
       >
         <SmoothScroll>
-          <AnimatedNavbarResponsive />
+          {/* <AnimatedNavbarResponsive /> */}
           <main className='pt-[150px]'>{children}</main>
           <Footer />
         </SmoothScroll>
