@@ -41,7 +41,7 @@ const HorizontalCards = () => {
 
   const x = useTransform(scrollYProgress, [0, 1], ['60%', '-100%']);
   return (
-    <section ref={targetRef} className="h-[700vh] bg-transparent">
+    <section ref={targetRef} className="h-[500vh] bg-transparent">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-4">
           {cards.map((card) => {

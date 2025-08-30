@@ -1,8 +1,7 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Badge } from '../ui/badge';
-import CustomButton from '../CustomButton';
 
 import type { MotionValue } from 'framer-motion';
 import { ChevronsDown } from 'lucide-react';
@@ -52,6 +51,27 @@ const OverlaySection = () => {
       {children}
     </motion.div>
   );
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      if (video.currentTime >= 4.8) {
+        video.currentTime = 0;
+        video.play();
+      }
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+    };
+  }, []);
+
   return (
     <motion.section
       style={{ opacity: bgOpacity }}
@@ -59,14 +79,16 @@ const OverlaySection = () => {
       className="h-[240vh] text-white w-full fixed top-0 z-10 bg-gradient-to-b from-white via-18%  via-zinc-900 to-50% to-white "
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* <video
-          src="/abstract.mp4"
+        <video
+          ref={videoRef}
+          src="/I_logo.mp4"
           autoPlay
           muted
           loop
+          playsInline
           className="absolute w-full h-screen -z-10 object-cover"
-        /> */}
-        <div className="flex justify-around flex-col pt-30">
+        />
+        <div className="flex justify-around flex-col md:pt-30 h-screen pb-5">
           <MotionDiv
             innerOp={bgOpacityInner}
             className="px-4 md:px-10 py-4 rounded-full text-muted-foreground mb-4 flex flex-col gap-4"
@@ -76,41 +98,40 @@ const OverlaySection = () => {
               className="hidden md:flex px-4 py-2 items-center"
             >
               <span className="blink_me"></span>{' '}
-              <span className="pl-4">NOW BOOKING — WORLDWIDE</span>
+              <span className="pl-4">BOOKING WORLDWIDE</span>
             </Badge>
-            <div className="text-sm md:text-lg px-8">
-              Web Developer & Designer
+            <div className="flex md:hidden items-center gap-2 px-4 py-2 text-xs text-neutral-400">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+              <span>Booking Worldwide</span>
             </div>
+            <div className="text-sm md:text-lg">Web Developer & Designer</div>
           </MotionDiv>
 
           <div className="flex flex-col">
             <MotionDiv className="md:text-4xl tracking-wider md:p-10">
               <motion.p
-                className="p-4"
+                className="p-4 font-roboto-mono"
                 style={{ scale: textScaleHelper, opacity: bgOpacityInner }}
               >
                 BETWEEN STARS AND CODE:
               </motion.p>
             </MotionDiv>
             <MotionDiv
-              className="pointer-events-none select-none text-5xl font-extrabold font-orbitron md:text-[12vw] bg-gradient-to-br from-zinc-900 from-10% via-red-800 to-zinc-900 to-95% bg-clip-text text-transparent self-center scale-y-125
+              className="pointer-events-none select-none text-6xl font-extrabold font-orbitron md:text-[12vw] bg-gradient-to-br from-zinc-900 from-10% via-white to-zinc-900 to-95% bg-clip-text text-transparent self-center scale-y-125
              "
+              //  from-zinc-900 from-10% via-red-800 to-zinc-900 to-95%
             >
               IVAYLOVERSE
             </MotionDiv>
 
             <MotionDiv className="w-full md:p-10" innerOp={bgOpacityInner}>
-              <p className="md:text-4xl p-4 md:w-2/4">
-                Open to new projects worldwide
+              <p className="md:text-4xl p-4 md:w-2/4 font-inter">
+                Full‑stack experiences. Designed to scale. Built to move.
               </p>
-              <p className="md:text-4xl p-4 md:w-2/4">
-                From idea to launch — clean, scalable, and on time.
+              <p className="md:text-3xl p-4 md:w-2/4 text-sm text-neutral-400 tracking-wide font-roboto-mono">
+                Projects done right — and done on time.
               </p>
-              <p className="md:text-4xl p-4 md:w-2/4">
-                Web apps, dashboards, and modern e-commerce built with Next.js,
-                React, and TypeScript. Optimized for speed, SEO, and a great
-                user experience.
-              </p>
+
               {/* <div className="grid grid-cols-2 text-center md:flex gap-2 my-4 md:my-8">
                 {[
                   'Landing Pages',
@@ -133,10 +154,33 @@ const OverlaySection = () => {
             innerOp={bgOpacityInner}
             className="flex md:justify-around flex-col md:flex-row items-center"
           >
-            <div className="flex gap-4">
-              <CustomButton value="Contact" />
-              <CustomButton value="View Projects" />
+            <div className="flex gap-4 justify-self-start">
+              {/* View Projects (primary) */}
+              <button
+                className="group relative px-6 py-3 rounded-full font-medium uppercase tracking-wider 
+               border border-zinc-600 text-zinc-300 overflow-hidden transition-colors duration-300"
+              >
+                <span
+                  className="absolute inset-0 w-0 bg-gradient-to-r from-zinc-600 via-zinc-900 to-red-900
+                 transition-all duration-300 ease-out 
+                 sm:group-hover:w-full"
+                />
+                <span className="relative z-10 transition-colors duration-300 sm:group-hover:text-white">
+                  Contact
+                </span>
+              </button>
+
+              {/* Contact (secondary) */}
+              <button
+                className="px-6 py-3 rounded-full font-medium uppercase tracking-wider
+               border border-zinc-600 text-zinc-300 
+               transition duration-300
+               sm:hover:border-red-500 sm:hover:text-white sm:hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]"
+              >
+                View Projects
+              </button>
             </div>
+
             <p className="text-3xl lg:text-5xl font-bold py-5 text-center">
               BUILD SOMETHING REAL
             </p>
@@ -146,7 +190,7 @@ const OverlaySection = () => {
             className="hidden md:flex uppercase flex-col justify-center items-center w-1/8"
           >
             <p>Scroll to Explore</p>
-            <ChevronsDown className="animate-bounce w-10 h-10" />
+            <ChevronsDown className="animate-bounce w-6 h-6" />
           </motion.div>
         </div>
       </div>
