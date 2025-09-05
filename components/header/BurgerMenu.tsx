@@ -10,7 +10,7 @@ const BurgerMenu = ({
   return (
     <button
       onClick={() => setOpen(!open)}
-      className="flex items-center justify-center cursor-pointer select-none"
+      className="flex items-center justify-end cursor-pointer select-none w-12 h-12"
     >
       <div className="grid justify-items-center gap-2.5">
         <span

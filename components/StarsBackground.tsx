@@ -186,13 +186,13 @@ export default function StarfieldHeroGradient() {
   return (
     <section className="w-full text-white">
       <div
-        className="pointer-events-none fixed inset-0 -z-9"
+        className="pointer-events-none fixed inset-0 -z-50"
         style={{
           background:
             'radial-gradient(130% 80% at 50% 130%, rgba(171, 7, 7, 0.4) 0%, rgba(0,0,0,0) 100%)',
         }}
       />
-      <div className="pointer-events-none fixed inset-0 -z-10">
+      <div className="pointer-events-none fixed inset-0 -z-50">
         <Canvas camera={{ position: [0, 0, 90], fov: 60 }}>
           <SkyBackground
             colors={['#000000', '#000000', '#000000']}

@@ -3,11 +3,11 @@ import { services } from '@/lib/constants';
 
 const Services = () => {
   return (
-    <section>
-      <h1 className="text-9xl font-bold text-gray-200 text-center">
-        What I offer
+    <section className="bg-zinc-900/50 pt-96">
+      <h1 className="text-5xl text-zinc-100 md:text-8xl font-bold sticky top-30 px-24">
+        WHAT I DO
       </h1>
-      <div className="bg-transparent p-4 max-w-[1440px] mx-auto mb-[50vh]">
+      <div className="bg-transparent">
         {services.map((service, idx) => (
           <MotionCard key={idx} {...service} />
         ))}
