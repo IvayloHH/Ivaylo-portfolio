@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import '../globals.css';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
-import AnimatedNavbarResponsive from '@/components/header/Navbar';
+import Navbar from '@/components/header/Navbar';
+import { ViewportHeightFix } from '@/components/CustomVH';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -20,6 +21,14 @@ export const metadata: Metadata = {
   description: 'Full-stack developer portfolio',
 };
 
+export const viewport = {
+  width: 'device-width',
+  height: 'device-height',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: 'no',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,9 +39,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-zinc-900`}
       >
+        <ViewportHeightFix />
         <SmoothScroll>
-          <AnimatedNavbarResponsive />
-          <main className='pt-[150px]'>{children}</main>
+          <Navbar />
+          <main>{children}</main>
           <Footer />
         </SmoothScroll>
       </body>

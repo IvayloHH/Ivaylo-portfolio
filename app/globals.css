@@ -123,7 +123,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-inter overflow-x-hidden;
+    @apply bg-background text-foreground font-inter;
   }
 }
 
@@ -133,20 +133,5 @@
   }
   .fillColorProject {
     @apply inline-block w-fit font-semibold tracking-tight cursor-pointer overflow-hidden bg-clip-text [background-size:200%_100%] [background-position:100%_0] transition-[background-position] duration-[700ms] ease-in-out hover:bg-[linear-gradient(to_right,_white,_white_50%,_#420000_50%)] hover:[background-position:0_100%] hover:text-transparent;
-  }
-}
-
-.blink_me {
-  animation: blinker 2s linear infinite;
-  width: 14px;
-  height: 14px;
-  display: inline-block;
-  border: 1px solid green;
-  background-color: green;
-  border-radius: 100%;
-}
-@keyframes blinker {
-  50% {
-    opacity: 0.6;
   }
 }

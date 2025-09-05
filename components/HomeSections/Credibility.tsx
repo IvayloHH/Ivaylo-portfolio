@@ -12,7 +12,7 @@ const InnerSections = () => {
     offset: ['start center', 'center center'],
   });
   const y = useTransform(scrollYProgress, [0, 1], ['-90deg', '0deg']);
-  const scale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
 
   // const { scrollYProgress } = useScroll({
   //   target: sectionRef,
@@ -44,10 +44,10 @@ const InnerSections = () => {
   return (
     <motion.section
       // style={{ opacity: bgOpacity }}
-      style={{ rotateY: y, scale, opacity: scale }}
+      style={{ rotateY: y, scale }}
       ref={sectionRef}
-      initial={{ opacity: 0, scale: 0 }}
-      className="overflow-hidden mt-[100vh] h-screen px-10 grid grid-cols-1 md:grid-cols-2 items-center bg-zinc-900/50  pt-16 md:pt-48"
+      initial={{ scale: 0 }}
+      className="overflow-hidden mt-[100vh] h-screen px-10 grid grid-cols-1 md:grid-cols-2 items-center bg-zinc-900/50 backdrop-blur-xs  pt-16 md:pt-48"
     >
       <motion.div
         // style={{ x: textX, opacity: textOpacity }}

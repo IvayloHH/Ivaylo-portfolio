@@ -30,21 +30,25 @@ const OverlaySection = () => {
   // Smooth scrubbing so a fast flick doesn't skip the reveal
   const progress = useSpring(scrollYProgress, {
     stiffness: 100,
-    damping: 30,
-    mass: 0.1,
+    damping: 20,
+    mass: 0.5,
   });
-  const textScale = useTransform(progress, [0, 1], [1, 90]);
+  const textScale = useTransform(
+    progress,
+    [0, 0.5, 0.7, 0.8, 0.9, 1],
+    [1, 15, 35, 55, 75, 90]
+  );
   const textXPercent = useTransform(progress, [0, 1], [0, 10]);
   const bgOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.5, 1],
-    [1, 1, 0, -1]
+    progress,
+    [0, 0.3, 0.5, 0.7, 1],
+    [1, 1, 0.6, 0, -1]
   );
-  const bgOpacityInner = useTransform(scrollYProgress, [0, 0.1, 1], [1, 0, -1]);
+  const bgOpacityInner = useTransform(progress, [0, 0.1, 1], [1, 0, 0]);
   const bgOpacityVideo = useTransform(
-    scrollYProgress,
-    [0, 0.1, 1],
-    [1, 0.3, -1]
+    progress,
+    [0, 0.1, 0.5, 1],
+    [1, 0.5, 0.3, 0]
   );
 
   const MotionDiv = ({
@@ -94,7 +98,7 @@ const OverlaySection = () => {
     <motion.section
       style={{ opacity: bgOpacity }}
       ref={containerRef}
-      className={`h-[240vh] overflow-hidden text-zinc-100 w-full fixed top-0 ${
+      className={`fixed top-0 text-zinc-100 w-full ${
         isBehind ? '-z-10' : 'z-0'
       }`}
     >
@@ -107,7 +111,7 @@ const OverlaySection = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full -z-40 object-cover sm:max-h-none max-h-[100vh]"
+          className="absolute w-full h-screen -z-40 object-cover"
         />
         <div className="flex justify-center flex-col h-4/3 pb-5 space-y-6 md:space-y-20 lg:space-y-24">
           <div className="flex flex-col">
@@ -119,7 +123,10 @@ const OverlaySection = () => {
               IVAYLOVERSE
             </MotionDiv>
 
-            <MotionDiv className="w-full pt-2 md:p-10" innerOp={bgOpacityInner}>
+            <MotionDiv
+              className="w-full pt-2 md:p-10 "
+              innerOp={bgOpacityInner}
+            >
               <p className="text-2xl md:text-3xl lg:text-4xl p-4 font-inter">
                 Full‑stack experiences. Designed to scale. Built to move.
               </p>
@@ -135,12 +142,12 @@ const OverlaySection = () => {
             <div className="flex gap-8">
               <CTAButton
                 value="Get in touch"
-                className="text-sm w-30 h-13 md:w-48 md:h-18"
+                className="w-30 h-13 md:w-48 md:h-18"
                 href="/contact"
               />
               <CTAButton
                 value="View Projects"
-                className="text-sm w-30 h-13 md:w-48 md:h-18 bg-gradient-to-r from-zinc-800 to-zinc-700 text-white"
+                className="w-30 h-13 md:w-48 md:h-18 bg-gradient-to-r from-zinc-800 to-zinc-700 text-white hover:ring-0"
                 href="/projects"
               />
             </div>

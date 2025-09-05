@@ -5,12 +5,22 @@ import Link from 'next/link';
 import { containerVariants, itemVariants, LINKS } from '@/lib/constants';
 import BurgerMenu from './BurgerMenu';
 
-export default function TopSheetNav() {
+export const Navbar = () => {
   const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen((v) => !v);
+    const el = document.getElementById('scroll-top-anchor');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
-      <motion.header className="sticky inset-x-0 top-0 bg-transparent z-20">
+      <motion.header className="sticky inset-x-0 top-0 bg-transparent z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="flex md:h-20 items-center justify-end md:justify-between text-white/90 rounded-xl p-6 transition-colors duration-1000 ease-in-out">
             <BurgerMenu open={open} setOpen={setOpen} />
@@ -82,7 +92,7 @@ export default function TopSheetNav() {
                           href={href}
                           role="menuitem"
                           className="fillColor"
-                          onClick={() => setOpen((v) => !v)}
+                          onClick={handleClick}
                         >
                           <span className="text-4xl md:text-6xl tracking-wider font-extrabold md:font-semibold lg:text-7xl">
                             {label}
@@ -108,4 +118,5 @@ export default function TopSheetNav() {
       </AnimatePresence>
     </>
   );
-}
+};
+export default Navbar;
