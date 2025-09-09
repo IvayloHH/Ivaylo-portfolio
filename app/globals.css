@@ -129,9 +129,13 @@
 
 @layer components {
   .fillColor {
-    @apply inline-block w-fit font-semibold tracking-tight cursor-pointer overflow-hidden bg-clip-text [background-size:200%_100%] [background-position:100%_0] transition-[background-position] duration-[700ms] ease-in-out group-hover:text-transparent group-hover:bg-[linear-gradient(to_right,_white,_white_50%,_gray_50%)] group-hover:[background-position:100%_0] hover:bg-[linear-gradient(to_right,_white,_white_50%,_#420000_50%)] hover:[background-position:0_100%];
+    @apply inline-block w-fit font-semibold tracking-tight cursor-pointer overflow-hidden bg-clip-text [background-size:200%_100%] [background-position:100%_0] transition-[background-position] duration-[700ms] ease-in-out group-hover:text-transparent group-hover:bg-[linear-gradient(to_right,_white,_white_50%,_gray_50%)] group-hover:[background-position:100%_0] hover:bg-[linear-gradient(to_right,_white,_white_50%,_#860000_50%)] hover:[background-position:0_100%];
   }
   .fillColorProject {
-    @apply inline-block w-fit font-semibold tracking-tight cursor-pointer overflow-hidden bg-clip-text [background-size:200%_100%] [background-position:100%_0] transition-[background-position] duration-[700ms] ease-in-out hover:bg-[linear-gradient(to_right,_white,_white_50%,_#420000_50%)] hover:[background-position:0_100%] hover:text-transparent;
+    @apply inline-block w-fit font-semibold tracking-tight cursor-pointer overflow-hidden bg-clip-text [background-size:200%_100%] [background-position:100%_0] transition-[background-position] duration-[700ms] ease-in-out hover:bg-[linear-gradient(to_right,_white,_white_50%,_#860000_50%)] hover:[background-position:0_100%] hover:text-transparent;
   }
+}
+
+.footer-container {
+  clip-path: polygon(0% 0, 100% 0, 100% 100%, 0 100%);
 }

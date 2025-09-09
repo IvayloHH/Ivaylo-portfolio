@@ -15,7 +15,7 @@ const MotionCard = ({
 }) => {
   return (
     // cardcontainer
-    <div className="h-screen flex justify-center items-center sticky top-0">
+    <div className="min-h-screen flex justify-center items-center sticky top-0">
       {/* //card */}
       <div
         className={cn(
@@ -27,7 +27,7 @@ const MotionCard = ({
         )}
       >
         <div className="text-5xl font-semibold p-4 hidden md:block">({id})</div>
-        <div className="flex gap-4 flex-col h-full">
+        <div className="flex gap-4 flex-col min-h-[70vh]">
           <h1 className="text-3xl md:text-5xl font-bold py-4">{title}</h1>
           <h2 className="text-muted-foreground text-xl max-w-xl">
             {description}

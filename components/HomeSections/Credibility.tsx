@@ -1,8 +1,8 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Button } from '../ui/button';
 import Image from 'next/image';
+import CTAButton from '../CTAButton';
 
 const InnerSections = () => {
   const sectionRef = useRef(null);
@@ -47,7 +47,7 @@ const InnerSections = () => {
       style={{ rotateY: y, scale }}
       ref={sectionRef}
       initial={{ scale: 0 }}
-      className="overflow-hidden mt-[100vh] h-screen px-10 grid grid-cols-1 md:grid-cols-2 items-center bg-zinc-900/50 backdrop-blur-xs  pt-16 md:pt-48"
+      className="overflow-hidden mt-[100vh] min-h-screen px-10 grid grid-cols-1 md:grid-cols-2 items-center bg-zinc-900/50 backdrop-blur-xs  pt-16 md:pt-48"
     >
       <motion.div
         // style={{ x: textX, opacity: textOpacity }}
@@ -65,7 +65,12 @@ const InnerSections = () => {
           Making sure every layer works — today and as your product scales.
         </p>
         <motion.div className="self-center">
-          <Button variant="outline">Let’s build your next thing →</Button>
+          <CTAButton
+            value="Scale what matters →"
+            className="w-full"
+            href="/contact"
+          />
+          {/* <Button variant="outline">Let’s build your next thing →</Button> */}
         </motion.div>
       </motion.div>
 

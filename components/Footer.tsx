@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-zinc-700  to-zinc-900 text-white">
+    <footer className="overflow-hidden bg-zinc-900/50 backdrop-blur-xs text-white">
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto p-10 text-xl">
         <div className="flex items-center justify-center flex-col md:pl-12">
           <p className="p-5 text-2xl lg:w-full">Ivaylo Hristov</p>

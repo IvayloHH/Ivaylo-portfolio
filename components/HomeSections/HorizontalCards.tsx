@@ -10,19 +10,19 @@ const HorizontalCards = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ['40%', '-100%']);
+  const x = useTransform(scrollYProgress, [0, 1], ['50%', '-100%']);
   const textOpacity = useTransform(
     scrollYProgress,
     [0, 0.2, 0.8, 1],
     [0, 1, 1, 0]
   );
   return (
-    <section className=" bg-transparent">
+    <section className="bg-transparent">
       <div className="h-[500vh]" ref={targetRef}>
-        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
           <motion.div
             style={{ opacity: textOpacity }}
-            className="absolute inset-40 text-5xl text-zinc-400 w-full pl-28"
+            className="absolute top-20 left-10 right-10 md:inset-20 lg:inset-30 text-4xl md:text-5xl text-zinc-400 w-full md:pl-28"
           >
             RECENT PROJECTS
           </motion.div>
@@ -30,9 +30,7 @@ const HorizontalCards = () => {
             {PROJECT_CARDS.map((card) => (
               <div
                 key={card.id}
-                // h-[650px] w-[550px]
-                // h-[65vh] w-[35vw]
-                className={`group relative h-[35vh] w-[65vw] md:h-[65vh] md:w-[35vw] rounded-lg overflow-hidden border mx-40 ${card.bgColor}`}
+                className="group relative h-[45vh] w-[80vw] md:h-[50vh] md:w-[30vw] rounded-lg overflow-hidden border mx-10 md:mx-40"
               >
                 <div
                   style={{
@@ -45,7 +43,7 @@ const HorizontalCards = () => {
                 </div>
 
                 <div className="absolute inset-0 z-10 grid place-content-end">
-                  <p className="bg-gradient-to-br from-zinc-900/20 to-white/0 p-8 text-6xl font-black uppercase text-white backdrop-blur-lg">
+                  <p className="bg-gradient-to-br from-zinc-900/20 to-white/0 p-8 text-3xl xl:text-5xl font-black uppercase text-white backdrop-blur-lg">
                     {card.title}
                   </p>
                 </div>

@@ -81,43 +81,26 @@ export const PROJECT_CARDS = [
   {
     title: 'Pro Store',
     id: 1,
-    bgColor: 'bg-blue-500',
     image: '/prostore.png',
   },
   {
     title: 'Travel App',
     id: 2,
-    bgColor: 'bg-green-500',
     image: '/trips_app.png',
   },
   {
     title: 'Store It',
     id: 3,
-    bgColor: 'bg-red-500',
     image: '/storeit_app.png',
   },
   {
     title: 'Title 4',
     id: 4,
-    bgColor: 'bg-blue-500',
     image: '/storeit_app.png',
   },
   {
     title: 'Title 5',
     id: 5,
-    bgColor: 'bg-green-500',
     image: '/storeit_app.png',
   },
-  // {
-  //   title: 'Title 6',
-  //   id: 6,
-  //   bgColor: 'bg-red-500',
-  //   image: '/storeit_app.png',
-  // },
-  // {
-  //   title: 'Title 7',
-  //   id: 7,
-  //   bgColor: 'bg-blue-500',
-  //   image: '/storeit_app.png',
-  // },
 ];

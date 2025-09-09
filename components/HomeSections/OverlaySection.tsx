@@ -139,15 +139,15 @@ const OverlaySection = () => {
             innerOp={bgOpacityInner}
             className="max-sm:pt-10 px-20 flex md:justify-between flex-col-reverse md:flex-row items-center"
           >
-            <div className="flex gap-8">
+            <div className="flex gap-4">
               <CTAButton
                 value="Get in touch"
-                className="w-30 h-13 md:w-48 md:h-18"
+                className="w-38 h-15 md:w-48 md:h-18"
                 href="/contact"
               />
               <CTAButton
                 value="View Projects"
-                className="w-30 h-13 md:w-48 md:h-18 bg-gradient-to-r from-zinc-800 to-zinc-700 text-white hover:ring-0"
+                className="w-38 h-15 md:w-48 md:h-18 bg-gradient-to-r from-zinc-800 to-zinc-700 text-white hover:ring-0"
                 href="/projects"
               />
             </div>
