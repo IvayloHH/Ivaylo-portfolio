@@ -1,9 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, createContext, useContext } from 'react';
 import { ReactLenis } from 'lenis/react';
 import type { LenisRef } from 'lenis/react';
 import { cancelFrame, frame } from 'framer-motion';
+
+const LenisContext = createContext<React.RefObject<LenisRef | null> | null>(null);
+
+export const useLenis = () => {
+  const context = useContext(LenisContext);
+  return context?.current?.lenis || null;
+};
 
 const SmoothScroll = ({
   children,
@@ -22,9 +29,11 @@ const SmoothScroll = ({
     return () => cancelFrame(update);
   }, []);
   return (
-    <ReactLenis root options={{ autoRaf: false }} ref={lenisRef}>
-      {children}
-    </ReactLenis>
+    <LenisContext.Provider value={lenisRef}>
+      <ReactLenis root options={{ autoRaf: false }} ref={lenisRef}>
+        {children}
+      </ReactLenis>
+    </LenisContext.Provider>
   );
 };
 

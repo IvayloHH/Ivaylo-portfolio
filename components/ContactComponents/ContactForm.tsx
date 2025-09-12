@@ -68,24 +68,22 @@ export default function ContactForm() {
 
       const result = await res.json();
       console.log('Email sent successfully:', result);
-      // Optionally show success toast or reset form
     } catch (error) {
       console.error('Error sending message:', error);
-      // Optionally show error toast
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 max-w-4xl mx-auto p-8"
+      className="space-y-6 max-w-5xl mx-auto p-6 select-none"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <input
             {...register('firstName')}
             placeholder="First name"
-            className="w-full p-3 border border-zinc-700 rounded-md bg-zinc-900 text-white placeholder-zinc-400"
+            className="w-full p-5 border border-zinc-700 rounded-md bg-zinc-900 text-white placeholder-zinc-400"
           />
           {errors.firstName && (
             <p className="text-red-500 text-sm mt-1">
@@ -97,7 +95,7 @@ export default function ContactForm() {
           <input
             {...register('lastName')}
             placeholder="Last name"
-            className="w-full p-3 border border-zinc-700 rounded-md bg-zinc-900 text-white placeholder-zinc-400"
+            className="w-full p-5 border border-zinc-700 rounded-md bg-zinc-900 text-white placeholder-zinc-400"
           />
           {errors.lastName && (
             <p className="text-red-500 text-sm mt-1">
@@ -109,7 +107,7 @@ export default function ContactForm() {
       <div>
         <select
           {...register('option')}
-          className="w-full p-3 border border-zinc-700 rounded-md bg-zinc-900 text-white"
+          className="w-full p-5 border border-zinc-700 rounded-md bg-zinc-900 text-white"
         >
           <option value="">Select an option</option>
           <option value="option1">Option 1</option>
@@ -127,7 +125,7 @@ export default function ContactForm() {
           {...register('email')}
           type="email"
           placeholder="Email address"
-          className="w-full p-3  border border-zinc-700 rounded-md bg-zinc-900 text-white placeholder-zinc-400"
+          className="w-full p-5  border border-zinc-700 rounded-md bg-zinc-900 text-white placeholder-zinc-400"
         />
         {errors.email && (
           <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -143,7 +141,7 @@ export default function ContactForm() {
             setValue('country', country.countryCode || '');
             setValue('dialCode', country.dialCode || '');
           }}
-          inputClass="!w-full !py-3 px-10 !bg-zinc-900 !text-white !border-zinc-700 !rounded-md"
+          inputClass="!w-full !py-7 px-10 !bg-zinc-900 !text-white !border-zinc-700 !rounded-md"
           buttonClass="!bg-zinc-900 !border-zinc-700"
           containerClass="!w-full"
         />

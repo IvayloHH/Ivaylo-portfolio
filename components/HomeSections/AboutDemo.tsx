@@ -52,7 +52,7 @@ const AboutDemo = () => {
 
   return (
     <section className="h-full md:min-h-[120vh] py-20 px-10 lg:px-20">
-      <div className="md:p-28 text-zinc-100 font-extrabold">
+      <div className="md:m-28 text-zinc-100 font-extrabold">
         <h1 className="text-zinc-400 text-5xl md:text-6xl mb-15 md:mb-25 font-bold">
           Who’s behind Ivayloverse?
         </h1>

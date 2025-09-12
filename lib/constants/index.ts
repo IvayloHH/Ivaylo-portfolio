@@ -58,22 +58,27 @@ export const LINKS = [
   {
     label: 'Home',
     href: '/',
+    id: 1,
   },
   {
     label: 'Services',
     href: '/services',
+    id: 2,
   },
   {
     label: 'Work',
     href: '/projects',
+    id: 3,
   },
   {
     label: 'About',
     href: '/about',
+    id: 4,
   },
   {
     label: 'Contact',
     href: '/contact',
+    id: 5,
   },
 ];
 
